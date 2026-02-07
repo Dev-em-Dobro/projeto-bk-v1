@@ -23,7 +23,7 @@ const AppSection = () => {
       x: 0,
       transition: {
         duration: 0.8,
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 100,
       },
     },
@@ -36,7 +36,7 @@ const AppSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     },
   }
@@ -49,7 +49,7 @@ const AppSection = () => {
       transition: {
         duration: 0.4,
         delay: 0.3 + i * 0.1,
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 200,
       },
     }),
@@ -60,7 +60,7 @@ const AppSection = () => {
     transition: {
       duration: 3,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,
     },
   }
 

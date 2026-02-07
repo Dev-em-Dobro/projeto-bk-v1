@@ -34,7 +34,7 @@ const Footer = () => {
       transition: {
         duration: 0.4,
         delay: 0.3 + i * 0.1,
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 200,
       },
     }),

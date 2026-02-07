@@ -41,7 +41,7 @@ const HmmmSection = () => {
       rotateY: 0,
       transition: {
         duration: 0.8,
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 100,
       },
     },
@@ -54,7 +54,7 @@ const HmmmSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 100,
       },
     },
@@ -77,7 +77,7 @@ const HmmmSection = () => {
     transition: {
       duration: 6,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,
     },
   }
 

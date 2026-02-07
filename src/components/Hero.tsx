@@ -19,7 +19,7 @@ const Hero = () => {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     },
   }
@@ -33,7 +33,7 @@ const Hero = () => {
       transition: {
         duration: 0.8,
         delay: 0.3,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     },
   }
@@ -54,7 +54,7 @@ const Hero = () => {
         y: {
           duration: 3,
           repeat: Infinity,
-          ease: 'easeInOut',
+          ease: 'easeInOut' as const,
           delay: 0.5 + i * 0.2 + 0.8,
         },
         opacity: {
@@ -64,14 +64,14 @@ const Hero = () => {
         x: {
           duration: 0.8,
           delay: 0.5 + i * 0.2,
-          type: 'spring',
+          type: 'spring' as const,
           stiffness: 100,
           damping: 10,
         },
         scale: {
           duration: 0.8,
           delay: 0.5 + i * 0.2,
-          type: 'spring',
+          type: 'spring' as const,
           stiffness: 100,
           damping: 10,
         },
@@ -96,7 +96,7 @@ const Hero = () => {
     transition: {
       duration: 2,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,
     },
   }
 

@@ -18,11 +18,10 @@ const PromoSection = () => {
 
     useEffect(() => {
         if (isInView) {
-            // Animação do número 2
-            const timer2 = setTimeout(() => {
-                let current = 0
-                const increment = 0.1
-                const duration = 1000
+        // Animação do número 2
+        const timer2 = setTimeout(() => {
+            let current = 0
+            const duration = 1000
                 const steps = duration / 16
                 const stepValue = 2 / steps
 
@@ -37,11 +36,10 @@ const PromoSection = () => {
                 }, 16)
             }, 300)
 
-            // Animação do preço
-            const timerPrice = setTimeout(() => {
-                let current = 0
-                const increment = 0.5
-                const duration = 1500
+        // Animação do preço
+        const timerPrice = setTimeout(() => {
+            let current = 0
+            const duration = 1500
                 const steps = duration / 16
                 const stepValue = 25 / steps
 
@@ -81,7 +79,7 @@ const PromoSection = () => {
             y: 0,
             transition: {
                 duration: 0.6,
-                ease: 'easeOut',
+                ease: 'easeOut' as const,
             },
         },
     }
@@ -94,7 +92,7 @@ const PromoSection = () => {
             scale: 1,
             transition: {
                 duration: 0.8,
-                type: 'spring',
+                type: 'spring' as const,
                 stiffness: 100,
                 damping: 15,
             },
@@ -110,7 +108,7 @@ const PromoSection = () => {
             transition: {
                 duration: 0.6,
                 delay: i * 0.15,
-                type: 'spring',
+                type: 'spring' as const,
                 stiffness: 100,
                 damping: 12,
             },

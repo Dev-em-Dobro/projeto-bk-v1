@@ -39,7 +39,7 @@
             background: linear-gradient(to bottom, #502314, #2D1006);
         }
         .text-stroke-white {
-            -webkit-text-stroke: 1px white;
+            -weKBit-text-stroke: 1px white;
         }
         .promo-overlay {
             background: linear-gradient(to right, rgba(80, 35, 20, 0.8) 0%, rgba(80, 35, 20, 0.4) 50%, rgba(80, 35, 20, 0.2) 100%);
@@ -53,6 +53,9 @@
         .ninja-carousel-dot.ninja-dot-active {
             background-color: #FFD100;
             transform: scale(1.1);
+        }
+        .ninja-slide-orange {
+            background: linear-gradient(135deg, #E85D04 0%, #DC2F02 100%);
         }
     </style>
 </head>
@@ -71,17 +74,14 @@
 </div>
 <div class="hidden lg:flex items-center gap-10 font-black text-sm uppercase tracking-widest text-secondary dark:text-accent">
 <a class="hover:text-primary transition-colors" href="#">Menu</a>
-<a class="hover:text-primary transition-colors" href="#">Cupons</a>
-<a class="hover:text-primary transition-colors" href="#">Restaurantes</a>
+<a class="hover:text-primary transition-colors" href="#">Promoções</a>
+<a class="hover:text-primary transition-colors" href="#">Kids Menu</a>
 <a class="hover:text-primary transition-colors" href="#">App</a>
 </div>
 <div class="flex items-center gap-4">
-<button class="bg-primary text-white px-8 py-3 rounded-lg font-black uppercase text-sm hover:scale-105 transition active:scale-95 shadow-lg shadow-primary/20">
+<!-- <button class="bg-primary text-white px-8 py-3 rounded-lg font-black uppercase text-sm hover:scale-105 transition active:scale-95 shadow-lg shadow-primary/20">
                     Pedir Agora
-                </button>
-<button class="flex items-center justify-center w-10 h-10 rounded-full bg-secondary/5 hover:bg-secondary/10 dark:bg-accent/5 dark:hover:bg-accent/10 transition">
-<span class="material-symbols-outlined text-secondary dark:text-accent">person</span>
-</button>
+                </button> -->
 </div>
 </div>
 </nav>
@@ -188,7 +188,7 @@
 <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-12">
 <div class="md:w-1/2 text-white text-center md:text-left">
 <div class="inline-block bg-[#FFD100] text-secondary font-display px-6 py-2 rounded-lg text-xl mb-6">KIDS MENU</div>
-<h2 class="font-display text-5xl md:text-7xl mb-6 leading-tight uppercase">O PODER NINJA CHEGOU AO BK!</h2>
+<h2 class="font-display text-5xl md:text-7xl mb-6 leading-tight uppercase">O PODER NINJA CHEGOU AO KB!</h2>
 <p class="text-xl md:text-2xl font-bold mb-8 opacity-90">Peça seu King Jr. e colecione os brinquedos das Tartarugas Ninja!</p>
 <button class="bg-white text-[#004D2C] px-10 py-4 rounded-full font-display text-xl hover:bg-primary hover:text-white transition transform hover:scale-105">Quero Meu King Jr.</button>
 </div>
@@ -197,7 +197,7 @@
 </div>
 </div>
 </div>
-<div class="ninja-carousel-slide min-w-full flex-shrink-0 w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-4 md:px-0">
+<div class="ninja-carousel-slide min-w-full flex-shrink-0 w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-4 md:px-0 ninja-slide-orange">
 <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-12">
 <div class="md:w-1/2 text-white text-center md:text-left">
 <div class="inline-block bg-[#FFD100] text-secondary font-display px-6 py-2 rounded-lg text-xl mb-6">KIDS MENU</div>
@@ -238,8 +238,8 @@
 </div>
 </div>
 </div>
-<button type="button" class="ninja-carousel-prev absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/40 hover:bg-white/60 text-white flex items-center justify-center text-2xl md:text-3xl font-bold transition focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#004D2C] focus:outline-none" aria-label="Slide anterior">‹</button>
-<button type="button" class="ninja-carousel-next absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/40 hover:bg-white/60 text-white flex items-center justify-center text-2xl md:text-3xl font-bold transition focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#004D2C] focus:outline-none" aria-label="Próximo slide">›</button>
+<button type="button" class="ninja-carousel-prev absolute left-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/40 hover:bg-white/60 text-white flex items-center justify-center text-2xl md:text-3xl font-bold transition focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#004D2C] focus:outline-none" aria-label="Slide anterior">‹</button>
+<button type="button" class="ninja-carousel-next absolute right-5 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/40 hover:bg-white/60 text-white flex items-center justify-center text-2xl md:text-3xl font-bold transition focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#004D2C] focus:outline-none" aria-label="Próximo slide">›</button>
 <div class="absolute bottom-0 left-0 right-0 py-3 bg-secondary/90">
 <div class="flex justify-center gap-2" role="tablist" aria-label="Slides do carrossel">
 <button type="button" class="ninja-carousel-dot w-2.5 h-2.5 rounded-sm bg-secondary transition focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary focus:outline-none hover:opacity-80" aria-label="Slide 1 de 4" aria-current="true" data-index="0"></button>
@@ -256,7 +256,7 @@
 <div class="bg-accent h-full p-4">
 <div class="flex items-center gap-2 mb-6 text-secondary">
 <span class="material-symbols-outlined text-primary">stars</span>
-<span class="font-display text-lg">Clube BK</span>
+<span class="font-display text-lg">Clube KB</span>
 </div>
 <div class="space-y-4">
 <div class="bg-white rounded-2xl p-4 shadow-sm">
@@ -280,13 +280,21 @@
 </div>
 <div class="text-center lg:text-left">
 <h2 class="font-display text-5xl md:text-7xl mb-8 leading-tight">Baixe nosso App e tenha o King Burger na palma da sua mão!</h2>
-<div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-<button class="bg-black border border-white/20 px-8 py-3 rounded-xl flex items-center gap-3 hover:bg-white/10 transition">
-<img alt="App Store" class="h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsIPLY_od0GykgQUzAYxAEf3rXrQ9fCpV8QIu0dBL_W1SI3Pa5DSsq2x79tAUE1SxH7JkMNvrebXrDwclKodt9NOQRbyvQbYHbOf_M7BnuebUkZmHebXNTawjmBZZ7rm9mGeHKHSxFWttYxUMxcPuEvfSd2esYRfjUqzCI_EoFf1psWhjyrsfFJSbikmkYOrHLcGhlaw8jqF3FNkWu0tcB0NoiOof3IcO-wabvgqJT4H1bQLRtpwQGAM1ZpfOWJg5HZOQqax3PDfY"/>
-</button>
-<button class="bg-black border border-white/20 px-8 py-3 rounded-xl flex items-center gap-3 hover:bg-white/10 transition">
-<img alt="Google Play" class="h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApdS7YTaJe-ADhKD9BCfuBOeRWbEK3mUZXIYdr7DFHOUuS01mQGJ8xJwxNSi-e4kVYYhSToxGpDLp4T2FY3IWBGO9pl3Jmun3bgk7e_hBDnI95XQPf6TKqUbkR-wOxu6WKa_6Vi-6-hBC6jMU2EKl8AXRSpU_T9FtDnyRbfwILhqKAmmZuZagRgA9rjzSnSURi6gjBSk5cY1YiL_QrArWKc-n4IxE2Ck0uHJl3vCq7GzLB_mQjXjRh02NHhcb9eiIgDQtvgQaBylQ"/>
-</button>
+<div class="flex flex-wrap gap-4 justify-center lg:justify-start items-center">
+<a href="#" class="bg-black border border-neutral-400/60 px-5 py-3 rounded-xl flex items-center gap-3 hover:bg-neutral-900 transition text-white no-underline">
+<svg class="h-8 w-8 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+<div class="text-left leading-tight">
+<span class="block text-[10px] md:text-xs font-normal">Disponível na</span>
+<span class="block text-base md:text-lg font-semibold">App Store</span>
+</div>
+</a>
+<a href="#" class="bg-black border border-neutral-400/60 px-5 py-3 rounded-xl flex items-center gap-3 hover:bg-neutral-900 transition text-white no-underline">
+<img alt="" class="h-8 w-8 flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApdS7YTaJe-ADhKD9BCfuBOeRWbEK3mUZXIYdr7DFHOUuS01mQGJ8xJwxNSi-e4kVYYhSToxGpDLp4T2FY3IWBGO9pl3Jmun3bgk7e_hBDnI95XQPf6TKqUbkR-wOxu6WKa_6Vi-6-hBC6jMU2EKl8AXRSpU_T9FtDnyRbfwILhqKAmmZuZagRgA9rjzSnSURi6gjBSk5cY1YiL_QrArWKc-n4IxE2Ck0uHJl3vCq7GzLB_mQjXjRh02NHhcb9eiIgDQtvgQaBylQ"/>
+<div class="text-left leading-tight">
+<span class="block text-[10px] md:text-xs font-normal uppercase">Disponível no</span>
+<span class="block text-base md:text-lg font-semibold">Google Play</span>
+</div>
+</a>
 </div>
 </div>
 </div>
@@ -298,11 +306,7 @@
             KING BURGER
         </div>
 <div class="flex flex-wrap justify-center gap-8 mb-12 text-sm font-bold uppercase tracking-wider">
-<a class="hover:text-primary transition" href="#">App BK</a>
-<a class="hover:text-primary transition" href="#">Sobre o BK</a>
-<a class="hover:text-primary transition" href="#">Trabalhe conosco</a>
-<a class="hover:text-primary transition" href="#">Seja um franqueado</a>
-<a class="hover:text-primary transition" href="#">Relações com investidores</a>
+<a class="hover:text-primary transition" href="#">App KB</a>
 </div>
 <div class="flex justify-center gap-6 mb-12">
 <a class="bg-white/10 p-3 rounded-full hover:bg-primary transition" href="#"><span class="material-symbols-outlined text-2xl">star</span></a>
@@ -314,7 +318,7 @@
         </p>
 </div>
 </footer>
-<div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-secondary py-4 px-6 border-t border-neutral-200 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 z-[100]">
+<!-- <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-secondary py-4 px-6 border-t border-neutral-200 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 z-[100]">
 <p class="text-xs text-secondary dark:text-accent max-w-3xl text-center md:text-left">
         Clicando em "Aceito todos", você concorda com o armazenamento de cookies no seu dispositivo. Todas as captações de dados pessoais realizadas neste site estão de acordo com nossa Política de Privacidade.
     </p>
@@ -322,7 +326,7 @@
 <button class="text-xs font-bold underline">Preferências de cookies</button>
 <button class="bg-primary text-white px-6 py-2 rounded font-bold text-xs uppercase hover:bg-primary/90 transition">Aceitar todos</button>
 </div>
-</div>
+</div> -->
 
 <script>
 (function () {

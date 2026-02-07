@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background-light dark:bg-background-dark font-body text-secondary dark:text-accent overflow-x-hidden pt-[112px];
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(to bottom, #502314, #2D1006);
+  }
+  
+  .text-stroke-white {
+    -webkit-text-stroke: 1px white;
+  }
+  
+  .promo-overlay {
+    background: linear-gradient(to right, rgba(80, 35, 20, 0.8) 0%, rgba(80, 35, 20, 0.4) 50%, rgba(80, 35, 20, 0.2) 100%);
+  }
+  
+  .ninja-gradient {
+    background: linear-gradient(135deg, #00A859 0%, #004D2C 100%);
+  }
+  
+  .sticky-header {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  }
+  
+  .ninja-carousel-dot.ninja-dot-active {
+    background-color: #FFD100;
+    transform: scale(1.1);
+  }
+  
+  .ninja-slide-orange {
+    background: linear-gradient(135deg, #00A859 0%, #004D2C 100%);
+  }
+}
+

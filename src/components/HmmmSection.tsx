@@ -101,40 +101,45 @@ const HmmmSection = () => {
             </motion.span>
           )}
         </h2>
-        <motion.div
-          className="relative inline-block group"
-          variants={imageVariants}
-          style={{ perspective: '1000px' }}
-        >
-          <motion.img
-            alt="Crispy Chicken Nuggets"
-            className="rounded-3xl shadow-2xl max-w-full md:max-w-4xl"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlTOx_r_EA0YqUjIL8jrBsVh9dBJsDW6o7Bq7Y7-bw6GBNY-bdB6VftDN6uQ0EVNale9HTVy86f2ut0pvWfvUUoaHAX6MxrBQtwGTUrKrcyFaDbu8mei8gbzPbjW5tq7AMTqdWNzTMyzI0eIYHw-X6uViC3XA-ZgXLq2iAATdPx8rTmX8o5ZPZ4M3lIvLTwpv7PtBon7SZXTyZRJcc0TsSDQc6Gc_CFYdlXcuMtI9ZYrIw6qkOqrFfTI9gZhha294qdJD4YsfZ7JQ"
-            animate={tiltAnimation}
-            whileHover={{ scale: 1.05 }}
-          />
+        <div className="flex justify-center">
           <motion.div
-            className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white text-primary px-10 py-4 rounded-full font-display text-2xl shadow-xl cursor-pointer"
-            variants={buttonVariants}
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: '#502314',
-              color: 'white',
-            }}
-            animate={{
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              scale: {
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              },
-            }}
+            className="relative inline-block group"
+            variants={imageVariants}
+            style={{ perspective: '1000px' }}
           >
-            Ver Mais
+            <motion.img
+              alt="Crispy Chicken Nuggets"
+              className="rounded-3xl shadow-2xl max-w-full md:max-w-4xl"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlTOx_r_EA0YqUjIL8jrBsVh9dBJsDW6o7Bq7Y7-bw6GBNY-bdB6VftDN6uQ0EVNale9HTVy86f2ut0pvWfvUUoaHAX6MxrBQtwGTUrKrcyFaDbu8mei8gbzPbjW5tq7AMTqdWNzTMyzI0eIYHw-X6uViC3XA-ZgXLq2iAATdPx8rTmX8o5ZPZ4M3lIvLTwpv7PtBon7SZXTyZRJcc0TsSDQc6Gc_CFYdlXcuMtI9ZYrIw6qkOqrFfTI9gZhha294qdJD4YsfZ7JQ"
+              animate={tiltAnimation}
+              whileHover={{ scale: 1.05 }}
+            />
+            <motion.div
+              className="absolute -bottom-6 left-1/2 bg-white text-primary px-10 py-4 rounded-full font-display text-2xl shadow-xl cursor-pointer whitespace-nowrap"
+              initial={{ x: '-50%' }}
+              animate={{
+                x: '-50%',
+                scale: [1, 1.05, 1],
+              }}
+              variants={buttonVariants}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: '#502314',
+                color: 'white',
+                x: '-50%',
+              }}
+              transition={{
+                scale: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut' as const,
+                },
+              }}
+            >
+              Ver Mais
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
         <motion.p
           className="text-white font-display text-3xl mt-12"
           variants={textVariants}

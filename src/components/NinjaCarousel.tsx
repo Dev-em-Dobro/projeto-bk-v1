@@ -69,20 +69,21 @@ const NinjaCarousel = () => {
       onMouseLeave={startAutoplay}
     >
       <div className="ninja-carousel w-full h-full relative overflow-hidden">
-        <AnimatePresence mode="wait">
-          {slides.map((slide, index) => {
-            if (index !== currentSlide) return null
-            return (
-              <motion.div
-                key={index}
-                className={`ninja-carousel-slide min-w-full flex-shrink-0 w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-4 md:px-0 ${
-                  slide.hasOrangeClass ? 'ninja-slide-orange' : ''
-                }`}
-                initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }}
-                transition={{ duration: 0.5 }}
-              >
+        <div className="relative w-full" style={{ minHeight: '600px' }}>
+          <AnimatePresence mode="wait">
+            {slides.map((slide, index) => {
+              if (index !== currentSlide) return null
+              return (
+                <motion.div
+                  key={index}
+                  className={`ninja-carousel-slide absolute inset-0 w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-4 md:px-0 ${
+                    slide.hasOrangeClass ? 'ninja-slide-orange' : ''
+                  }`}
+                  initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }}
+                  transition={{ duration: 0.5 }}
+                >
                 <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-12">
                   <motion.div
                     className="md:w-1/2 text-white text-center md:text-left"
@@ -134,10 +135,11 @@ const NinjaCarousel = () => {
                     )}
                   </motion.div>
                 </div>
-              </motion.div>
-            )
-          })}
-        </AnimatePresence>
+                </motion.div>
+              )
+            })}
+          </AnimatePresence>
+        </div>
       </div>
       <motion.button
         type="button"

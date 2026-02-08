@@ -10,7 +10,7 @@
 
 @layer components {
   .hero-gradient {
-    background: linear-gradient(to bottom, #502314, #2D1006);
+    background: #0B0704;
   }
   
   .text-stroke-white {
@@ -36,6 +36,11 @@
   
   .ninja-slide-orange {
     background: linear-gradient(135deg, #00A859 0%, #004D2C 100%);
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 }
 

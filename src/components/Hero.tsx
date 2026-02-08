@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
+import { useRef } from 'react'
 
 const Hero = () => {
+  const sectionRef = useRef<HTMLElement>(null)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -79,27 +81,6 @@ const Hero = () => {
     }),
   }
 
-  const buttonVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        delay: 1.2,
-      },
-    },
-  }
-
-  const pulseAnimation = {
-    scale: [1, 1.1, 1],
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-      ease: 'easeInOut' as const,
-    },
-  }
-
   const burgers = [
     {
       name: 'King Bacon Chicken',
@@ -126,14 +107,51 @@ const Hero = () => {
     },
   ]
 
+  // Partículas animadas
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    delay: Math.random() * 5,
+    duration: 3 + Math.random() * 4,
+  }))
+
   return (
     <motion.section
+      ref={sectionRef}
       className="hero-gradient min-h-[600px] relative overflow-hidden flex flex-col items-center justify-center text-center px-4 py-20"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <motion.div className="z-10 mb-8" variants={titleVariants}>
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-[#0B0704] z-0" />
+      
+      {/* Partículas flutuantes */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="absolute w-2 h-2 bg-[#FBB900]/30 rounded-full"
+            style={{
+              left: `${particle.left}%`,
+              top: '100%',
+            }}
+            animate={{
+              y: ['-100vh', '100vh'],
+              x: [0, Math.random() * 100 - 50],
+              opacity: [0, 0.5, 0],
+              scale: [0, 1, 0],
+            }}
+            transition={{
+              duration: particle.duration,
+              repeat: Infinity,
+              delay: particle.delay,
+              ease: 'linear',
+            }}
+          />
+        ))}
+      </div>
+      <motion.div className="z-10 mb-8 relative" variants={titleVariants}>
         <h1 className="font-display text-white text-7xl md:text-9xl tracking-tight leading-none">
           <motion.span
             initial={{ opacity: 0, x: -50 }}
@@ -152,7 +170,7 @@ const Hero = () => {
       </motion.div>
 
       <motion.div
-        className="flex flex-wrap justify-center gap-8 md:gap-4 items-end max-w-7xl mx-auto"
+        className="flex flex-wrap justify-center gap-8 md:gap-4 items-end max-w-7xl mx-auto relative z-10"
         variants={containerVariants}
       >
         {burgers.map((burger, index) => (
@@ -172,41 +190,34 @@ const Hero = () => {
             <p className="text-white font-display mb-2 text-sm md:text-xl uppercase text-center">
               {burger.name}
             </p>
-            <motion.img
-              alt={burger.alt}
-              className={`${burger.size} object-contain ${
-                burger.isCenter ? 'drop-shadow-2xl' : ''
-              }`}
-              src={burger.image}
-              whileHover={{ rotate: [0, 5, -5, 0] }}
-              transition={{ duration: 0.5 }}
-            />
+            <motion.div
+              className="relative"
+              style={{ perspective: '1000px' }}
+              whileHover={{
+                rotateY: [0, 15, -15, 0],
+                rotateX: [0, 10, -10, 0],
+                transition: { duration: 0.6 },
+              }}
+            >
+              <motion.img
+                alt={burger.alt}
+                className={`${burger.size} object-contain ${
+                  burger.isCenter ? 'drop-shadow-2xl' : ''
+                }`}
+                src={burger.image}
+                style={{ transformStyle: 'preserve-3d' }}
+                whileHover={{
+                  rotateZ: [0, 5, -5, 0],
+                  scale: 1.1,
+                  filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))',
+                }}
+                transition={{ duration: 0.5 }}
+              />
+            </motion.div>
           </motion.div>
         ))}
       </motion.div>
 
-      <motion.div className="mt-12" variants={buttonVariants}>
-        <motion.button
-          className="flex flex-col items-center text-white font-bold gap-2"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <motion.span animate={pulseAnimation}>Confira mais</motion.span>
-          <motion.span
-            className="material-symbols-outlined"
-            animate={{
-              y: [0, 10, 0],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          >
-            expand_more
-          </motion.span>
-        </motion.button>
-      </motion.div>
     </motion.section>
   )
 }

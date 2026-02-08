@@ -5,6 +5,7 @@ interface Slide {
   title: string
   image?: string
   video?: string
+  gif?: string
   alt: string
   hasOrangeClass?: boolean
 }
@@ -12,12 +13,12 @@ interface Slide {
 const slides: Slide[] = [
   {
     title: 'O PODER NINJA CHEGOU AO KB!',
-    video: '/images/tartarugas1.mp4',
+    gif: '/images/tartarugas1.gif',
     alt: 'King Jr Tartarugas Ninja - Donatello',
   },
   {
     title: 'O PODER NINJA CHEGOU AO BK!',
-    video: '/images/media.mp4',
+    gif: '/images/media.gif',
     alt: 'King Jr Tartarugas Ninja - Leonardo',
     hasOrangeClass: true,
   },
@@ -106,9 +107,15 @@ const NinjaCarousel = () => {
                     className="md:w-1/2 relative"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.3, type: 'spring', stiffness: 100 }}
+                    transition={{ duration: 0.6, delay: 0.3, type: 'spring' as const, stiffness: 100 }}
                   >
-                    {slide.video ? (
+                    {slide.gif ? (
+                      <img
+                        alt={slide.alt}
+                        className="w-full h-auto drop-shadow-2xl rounded-lg"
+                        src={slide.gif}
+                      />
+                    ) : slide.video ? (
                       <video
                         className="w-full h-auto drop-shadow-2xl rounded-lg"
                         autoPlay

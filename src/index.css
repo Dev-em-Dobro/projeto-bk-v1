@@ -18,7 +18,7 @@
   }
   
   .promo-overlay {
-    background: linear-gradient(to right, rgba(80, 35, 20, 0.8) 0%, rgba(80, 35, 20, 0.4) 50%, rgba(80, 35, 20, 0.2) 100%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.15) 100%);
   }
   
   .ninja-gradient {

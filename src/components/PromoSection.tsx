@@ -139,7 +139,7 @@ const PromoSection = () => {
     return (
         <motion.section
             ref={sectionRef}
-            className="relative min-h-[700px] flex items-center overflow-hidden bg-secondary"
+            className="relative min-h-[700px] flex items-center overflow-hidden bg-black"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}

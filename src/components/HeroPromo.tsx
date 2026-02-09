@@ -1,9 +1,17 @@
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 
 const HeroPromo = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 })
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 100])
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 45])
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 70])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -53,50 +61,21 @@ const HeroPromo = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative min-h-[90vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#191512] via-[#191512] to-[#191512]"
+      className="relative min-h-[90vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden"
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
     >
-      {/* Background GIF */}
-      {/* <div className="absolute inset-0 opacity-20">
-        <img
-          src="/images/hero-burguer-gif.gif"
-          alt="Background"
-          className="w-full h-full object-cover"
-        />
-      </div> */}
-
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {Array.from({ length: 15 }, (_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-3 h-3 bg-[#00A859]/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
-              opacity: [0.3, 0.7, 0.3],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-              ease: 'easeInOut' as const,
-            }}
-          />
-        ))}
-      </div>
+      {/* Camada de fundo com parallax (move mais devagar que o scroll) */}
+      <motion.div
+        className="absolute left-0 right-0 top-0 z-0 h-[120%] w-full bg-[#000000]"
+        style={{ y: backgroundY }}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Lado esquerdo - Informações */}
-          <motion.div className="text-white" variants={itemVariants}>
+          {/* Lado esquerdo - Informações (parallax) */}
+          <motion.div className="text-white" variants={itemVariants} style={{ y: contentY }}>
             <motion.div
               className="inline-block bg-[#00A859] text-white font-display px-6 py-2 rounded-full text-lg md:text-xl mb-6"
               initial={{ scale: 0 }}
@@ -138,33 +117,14 @@ const HeroPromo = () => {
               >
                 Quero Meu Combo!
               </motion.button>
-              
-              <motion.button
-                className="flex items-center justify-center gap-2 text-white font-display text-lg hover:text-[#00A859] transition"
-                whileHover={{ scale: 1.05 }}
-              >
-                <motion.span animate={pulseAnimation}>Confira mais</motion.span>
-                <motion.span
-                  className="material-symbols-outlined"
-                  animate={{
-                    y: [0, 10, 0],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: 'easeInOut' as const,
-                  }}
-                >
-                  expand_more
-                </motion.span>
-              </motion.button>
             </motion.div>
           </motion.div>
 
-          {/* Lado direito - Imagem do hambúrguer */}
+          {/* Lado direito - Imagem do hambúrguer (parallax) */}
           <motion.div
             className="relative flex justify-center items-center"
             variants={imageVariants}
+            style={{ y: imageY }}
           >
             <div className="relative">
               <img
@@ -174,28 +134,30 @@ const HeroPromo = () => {
                 style={{ width: '90%', height: 'auto' }}
               />
             </div>
-
-            {/* Decoração - Tartarugas Ninja */}
-            <motion.div
-              className="absolute -top-10 -right-10 w-32 h-32 opacity-20"
-              animate={{
-                rotate: [0, 360],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            >
-              <img
-                src="/images/tartarugas.png"
-                alt="Tartarugas Ninja"
-                className="w-full h-full object-contain"
-              />
-            </motion.div>
           </motion.div>
         </div>
       </div>
+
+      {/* Confira mais - fixo no final da hero, rola para a próxima seção */}
+      <motion.button
+        type="button"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white font-display font-normal text-sm hover:text-[#00A859] transition"
+        variants={itemVariants}
+        whileHover={{ scale: 1.05 }}
+        onClick={() => {
+          sectionRef.current?.nextElementSibling?.scrollIntoView({ behavior: 'smooth' })
+        }}
+        aria-label="Rolar para a próxima seção"
+      >
+        <span>Confira mais</span>
+        <motion.span
+          className="material-symbols-outlined"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' as const }}
+        >
+          expand_more
+        </motion.span>
+      </motion.button>
     </motion.section>
   )
 }

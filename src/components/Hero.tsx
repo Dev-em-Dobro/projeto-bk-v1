@@ -43,40 +43,22 @@ const Hero = () => {
   const burgerVariants = {
     hidden: (i: number) => ({
       opacity: 0,
-      y: 100,
-      x: i === 0 ? -100 : i === 2 ? 100 : 0,
-      scale: 0.5,
+      y: 40,
+      x: i === 0 ? -40 : i === 2 ? 40 : 0,
+      scale: 0.95,
+      rotate: 0,
     }),
     visible: (i: number) => ({
       opacity: 1,
-      y: [0, -20, 0],
+      y: 0,
       x: 0,
       scale: 1,
+      rotate: 0,
       transition: {
-        y: {
-          duration: 3,
-          repeat: Infinity,
-          ease: 'easeInOut' as const,
-          delay: 0.5 + i * 0.2 + 0.8,
-        },
-        opacity: {
-          duration: 0.8,
-          delay: 0.5 + i * 0.2,
-        },
-        x: {
-          duration: 0.8,
-          delay: 0.5 + i * 0.2,
-          type: 'spring' as const,
-          stiffness: 100,
-          damping: 10,
-        },
-        scale: {
-          duration: 0.8,
-          delay: 0.5 + i * 0.2,
-          type: 'spring' as const,
-          stiffness: 100,
-          damping: 10,
-        },
+        opacity: { duration: 0.6, delay: 0.2 + i * 0.1 },
+        x: { duration: 0.5, delay: 0.2 + i * 0.1, ease: 'easeOut' as const },
+        y: { duration: 0.5, delay: 0.2 + i * 0.1, ease: 'easeOut' as const },
+        scale: { duration: 0.5, delay: 0.2 + i * 0.1, ease: 'easeOut' as const },
       },
     }),
   }
@@ -124,7 +106,7 @@ const Hero = () => {
       animate="visible"
     >
       {/* Background overlay */}
-      <div className="absolute inset-0 bg-[#0B0704] z-0" />
+      <div className="absolute inset-0 bg-[#F5EBDC] z-0" />
       
       {/* Partículas flutuantes */}
       <div className="absolute inset-0 overflow-hidden z-0">
@@ -152,7 +134,7 @@ const Hero = () => {
         ))}
       </div>
       <motion.div className="z-10 mb-8 relative" variants={titleVariants}>
-        <h1 className="font-display text-white text-7xl md:text-9xl tracking-tight leading-none">
+        <h1 className="font-display text-[#1a120b] text-7xl md:text-9xl tracking-tight leading-none">
           <motion.span
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -161,7 +143,7 @@ const Hero = () => {
             THE KINGS
           </motion.span>
           <motion.span
-            className="block text-4xl md:text-6xl text-[#FBB900]"
+            className="block text-4xl md:text-6xl text-[#c99400]"
             variants={baconVariants}
           >
             BACON
@@ -176,42 +158,32 @@ const Hero = () => {
         {burgers.map((burger, index) => (
           <motion.div
             key={burger.name}
-            className={`group ${burger.isCenter ? '-mb-4 z-20' : ''}`}
+            className={`group flex flex-col items-center ${burger.isCenter ? '-mb-4 z-20' : ''}`}
             custom={index}
             initial="hidden"
             animate="visible"
             variants={burgerVariants}
+            style={{ transformOrigin: 'center center' }}
             whileHover={{
-              scale: 1.15,
-              rotate: [0, -5, 5, -5, 0],
-              transition: { duration: 0.5 },
+              scale: 1.05,
+              transition: { duration: 0.3 },
             }}
           >
-            <p className="text-white font-display mb-2 text-sm md:text-xl uppercase text-center">
+            <p className="text-[#1a120b] font-display mb-2 text-sm md:text-xl uppercase text-center">
               {burger.name}
             </p>
-            <motion.div
-              className="relative"
-              style={{ perspective: '1000px' }}
-              whileHover={{
-                rotateY: [0, 15, -15, 0],
-                rotateX: [0, 10, -10, 0],
-                transition: { duration: 0.6 },
-              }}
-            >
+            <motion.div className="relative">
               <motion.img
                 alt={burger.alt}
                 className={`${burger.size} object-contain ${
                   burger.isCenter ? 'drop-shadow-2xl' : ''
                 }`}
                 src={burger.image}
-                style={{ transformStyle: 'preserve-3d' }}
                 whileHover={{
-                  rotateZ: [0, 5, -5, 0],
-                  scale: 1.1,
-                  filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))',
+                  scale: 1.05,
+                  filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.2))',
                 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.3 }}
               />
             </motion.div>
           </motion.div>

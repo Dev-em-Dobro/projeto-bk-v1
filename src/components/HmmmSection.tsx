@@ -99,16 +99,10 @@ const HmmmSection = () => {
     },
   ]
 
-  const stats = [
-    { number: '12', label: 'Unidades' },
-    { number: '100%', label: 'Satisfação' },
-    { number: '5min', label: 'Preparo' },
-  ]
-
   return (
     <motion.section
       ref={sectionRef}
-      className="bg-gradient-to-br from-primary via-[#3a1a0f] to-primary py-24 relative overflow-hidden"
+      className="bg-gradient-to-br from-primary via-[#3a1a0f] to-primary py-14 md:py-16 relative overflow-hidden"
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
@@ -151,8 +145,8 @@ const HmmmSection = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Título */}
-        <motion.div className="text-center mb-16" variants={textVariants}>
-          <h2 className="font-display text-white text-7xl md:text-9xl mb-6 tracking-tighter opacity-90">
+        <motion.div className="text-center mb-10" variants={textVariants}>
+          <h2 className="font-display text-white text-6xl md:text-8xl mb-4 tracking-tighter opacity-90">
             {displayedText}
             {displayedText.length < fullText.length && (
               <motion.span
@@ -164,7 +158,7 @@ const HmmmSection = () => {
             )}
           </h2>
           <motion.p
-            className="text-white/80 font-display text-2xl md:text-3xl max-w-2xl mx-auto"
+            className="text-white/80 font-display text-xl md:text-2xl max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 1.2 }}
@@ -173,7 +167,7 @@ const HmmmSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center mb-8">
           {/* Imagem do produto */}
           <div className="flex justify-center order-2 lg:order-1">
             <motion.div
@@ -195,7 +189,7 @@ const HmmmSection = () => {
               />
               <motion.img
                 alt="Crispy Chicken Nuggets"
-                className="relative rounded-3xl shadow-2xl max-w-full md:max-w-lg"
+                className="relative rounded-3xl shadow-2xl max-w-full md:max-w-md scale-90 md:scale-90 origin-center"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlTOx_r_EA0YqUjIL8jrBsVh9dBJsDW6o7Bq7Y7-bw6GBNY-bdB6VftDN6uQ0EVNale9HTVy86f2ut0pvWfvUUoaHAX6MxrBQtwGTUrKrcyFaDbu8mei8gbzPbjW5tq7AMTqdWNzTMyzI0eIYHw-X6uViC3XA-ZgXLq2iAATdPx8rTmX8o5ZPZ4M3lIvLTwpv7PtBon7SZXTyZRJcc0TsSDQc6Gc_CFYdlXcuMtI9ZYrIw6qkOqrFfTI9gZhha294qdJD4YsfZ7JQ"
                 animate={tiltAnimation}
                 whileHover={{ scale: 1.05 }}
@@ -210,20 +204,20 @@ const HmmmSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <h3 className="font-display text-4xl md:text-5xl mb-6 text-[#FBB900]">
+            <h3 className="font-display text-3xl md:text-4xl mb-4 text-[#FBB900]">
               Crispy Chicken Nuggets
             </h3>
-            <p className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
+            <p className="text-lg md:text-xl mb-6 text-white/90 leading-relaxed">
               Crocantes por fora, suculentos por dentro. Nossos nuggets são feitos
               com peito de frango selecionado e temperados com nossa receita especial.
             </p>
 
             {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-center"
+                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-3 text-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.8 + index * 0.2 }}
@@ -232,31 +226,9 @@ const HmmmSection = () => {
                     backgroundColor: 'rgba(255, 255, 255, 0.15)',
                   }}
                 >
-                  <div className="text-4xl mb-2">{feature.icon}</div>
-                  <h4 className="font-display text-lg mb-1">{feature.title}</h4>
-                  <p className="text-sm text-white/70">{feature.description}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Stats */}
-            <div className="flex gap-8 mb-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  className="text-center"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{
-                    delay: 1.2 + index * 0.2,
-                    type: 'spring' as const,
-                    stiffness: 200,
-                  }}
-                >
-                  <div className="font-display text-4xl md:text-5xl text-[#FBB900] mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-white/70">{stat.label}</div>
+                  <div className="text-3xl mb-1">{feature.icon}</div>
+                  <h4 className="font-display text-base mb-0.5">{feature.title}</h4>
+                  <p className="text-xs text-white/70">{feature.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -291,63 +263,6 @@ const HmmmSection = () => {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Seção adicional com cards */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.5 }}
-        >
-          {[
-            {
-              title: 'Tempero Único',
-              description: 'Nossa receita secreta com 12 especiarias selecionadas',
-              icon: '🌶️',
-            },
-            {
-              title: 'Crocância Perfeita',
-              description: 'Frito na hora para garantir a textura ideal',
-              icon: '🔥',
-            },
-            {
-              title: 'Qualidade Premium',
-              description: '100% peito de frango, sem conservantes artificiais',
-              icon: '✨',
-            },
-          ].map((card, index) => (
-            <motion.div
-              key={index}
-              className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 text-center border border-white/20"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1.7 + index * 0.2 }}
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                borderColor: 'rgba(251, 185, 0, 0.5)',
-              }}
-            >
-              <motion.div
-                className="text-5xl mb-4"
-                animate={{
-                  rotate: [0, 10, -10, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: index * 0.5,
-                }}
-              >
-                {card.icon}
-              </motion.div>
-              <h4 className="font-display text-xl mb-2 text-[#FBB900]">
-                {card.title}
-              </h4>
-              <p className="text-white/80 text-sm">{card.description}</p>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </motion.section>
   )

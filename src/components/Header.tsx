@@ -1,21 +1,55 @@
+import { useState, useEffect } from 'react'
+
+const SCROLL_THRESHOLD = 60
+
 const Header = () => {
+  const [retracted, setRetracted] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setRetracted(window.scrollY > SCROLL_THRESHOLD)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-[60] flex flex-col w-full">
-      <div className="bg-[#FBB900] text-secondary text-[10px] md:text-xs py-1.5 px-4 text-center font-bold uppercase tracking-wider">
+    <header className="fixed top-0 left-0 right-0 z-[60] flex flex-col w-full transition-all duration-300">
+      <div
+        className={`bg-[#FBB900] text-secondary px-4 text-center font-bold uppercase tracking-wider transition-all duration-300 overflow-hidden ${
+          retracted ? 'text-[8px] md:text-[10px] py-0.5 opacity-90' : 'text-[10px] md:text-xs py-1.5'
+        }`}
+      >
         ATENÇÃO! Descontos e cupons promocionais só podem ser obtidos em nossos canais oficiais.
       </div>
-      <nav className="sticky-header bg-header-bg dark:bg-background-dark px-6 py-4">
+      <nav
+        className={`sticky-header bg-header-bg dark:bg-background-dark px-4 md:px-6 transition-all duration-300 ${
+          retracted ? 'py-2' : 'py-4'
+        }`}
+      >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="text-primary font-display text-2xl flex items-center gap-2 cursor-pointer">
-              <span className="material-symbols-outlined text-4xl">restaurant</span>
+            <div
+              className={`text-primary font-display flex items-center gap-2 cursor-pointer leading-none transition-all duration-300 ${
+                retracted ? 'text-lg' : 'text-2xl'
+              }`}
+            >
+              <span
+                className={`material-symbols-outlined transition-all duration-300 ${
+                  retracted ? 'text-2xl' : 'text-4xl'
+                }`}
+              >
+                restaurant
+              </span>
               <span className="leading-none">
                 KING<br />
                 <span className="text-secondary dark:text-accent">BURGER</span>
               </span>
             </div>
           </div>
-          <div className="hidden lg:flex items-center gap-10 font-black text-sm uppercase tracking-widest text-secondary dark:text-accent">
+          <div
+            className={`hidden lg:flex items-center font-black uppercase tracking-widest text-secondary dark:text-accent transition-all duration-300 ${
+              retracted ? 'gap-6 text-xs' : 'gap-10 text-sm'
+            }`}
+          >
             <a className="hover:text-primary transition-colors" href="#">
               Menu
             </a>

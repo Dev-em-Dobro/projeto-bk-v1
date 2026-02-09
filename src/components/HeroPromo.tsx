@@ -75,7 +75,11 @@ const HeroPromo = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Lado esquerdo - Informações (parallax) */}
-          <motion.div className="text-white" variants={itemVariants} style={{ y: contentY }}>
+          <motion.div
+            className="text-white max-[480px]:mt-8 text-center lg:text-left"
+            variants={itemVariants}
+            style={{ y: contentY }}
+          >
             <motion.div
               className="inline-block bg-[#00A859] text-white font-display px-6 py-2 rounded-full text-lg md:text-xl mb-6"
               initial={{ scale: 0 }}
@@ -106,7 +110,7 @@ const HeroPromo = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               variants={itemVariants}
             >
               <motion.button
@@ -122,15 +126,15 @@ const HeroPromo = () => {
 
           {/* Lado direito - Imagem do hambúrguer (parallax) */}
           <motion.div
-            className="relative flex justify-center items-center"
+            className="relative flex justify-center items-center max-[480px]:-mt-6 lg:mt-0"
             variants={imageVariants}
             style={{ y: imageY }}
           >
-            <div className="relative">
+            <div className="relative max-[480px]:flex max-[480px]:justify-center">
               <img
                 src="/images/hero-burguer-gif.gif"
                 alt="KB Ninja Combo"
-                className="w-full max-w-lg md:max-w-xl drop-shadow-2xl"
+                className="w-full max-w-lg md:max-w-xl drop-shadow-2xl max-[480px]:block max-[480px]:mx-auto"
                 style={{ width: '90%', height: 'auto' }}
               />
             </div>
@@ -141,7 +145,7 @@ const HeroPromo = () => {
       {/* Confira mais - fixo no final da hero, rola para a próxima seção */}
       <motion.button
         type="button"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white font-display font-normal text-sm hover:text-[#00A859] transition"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white font-display font-normal text-sm hover:text-[#00A859] transition max-[480px]:left-0 max-[480px]:right-0 max-[480px]:translate-x-0 max-[480px]:justify-center"
         variants={itemVariants}
         whileHover={{ scale: 1.05 }}
         onClick={() => {

@@ -4,12 +4,20 @@ const SCROLL_THRESHOLD = 60
 
 const Header = () => {
   const [retracted, setRetracted] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setRetracted(window.scrollY > SCROLL_THRESHOLD)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const navLinks = [
+    { label: 'Menu', href: '#' },
+    { label: 'Promoções', href: '#' },
+    { label: 'Kids Menu', href: '#' },
+    { label: 'App', href: '#' },
+  ]
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[60] flex flex-col w-full transition-all duration-300">
@@ -50,26 +58,56 @@ const Header = () => {
               retracted ? 'gap-6 text-xs' : 'gap-10 text-sm'
             }`}
           >
-            <a className="hover:text-primary transition-colors" href="#">
-              Menu
-            </a>
-            <a className="hover:text-primary transition-colors" href="#">
-              Promoções
-            </a>
-            <a className="hover:text-primary transition-colors" href="#">
-              Kids Menu
-            </a>
-            <a className="hover:text-primary transition-colors" href="#">
-              App
-            </a>
+            {navLinks.map((link) => (
+              <a key={link.label} className="hover:text-primary transition-colors" href={link.href}>
+                {link.label}
+              </a>
+            ))}
           </div>
-          <div className="flex items-center gap-4">
-            {/* <button className="bg-primary text-white px-8 py-3 rounded-lg font-black uppercase text-sm hover:scale-105 transition active:scale-95 shadow-lg shadow-primary/20">
-              Pedir Agora
-            </button> */}
-          </div>
+
+          {/* Botão menu hambúrguer - apenas mobile */}
+          <button
+            type="button"
+            className="lg:hidden p-2 rounded-lg text-secondary dark:text-accent hover:bg-black/5 dark:hover:bg-white/10 transition"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={menuOpen}
+          >
+            <span className="material-symbols-outlined text-3xl">
+              {menuOpen ? 'close' : 'menu'}
+            </span>
+          </button>
         </div>
       </nav>
+
+      {/* Menu mobile (drawer) */}
+      {menuOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/40 z-[59] lg:hidden"
+            aria-hidden
+            onClick={() => setMenuOpen(false)}
+          />
+          <div
+            className="fixed top-0 right-0 bottom-0 w-64 max-w-[85vw] bg-header-bg dark:bg-background-dark shadow-xl z-[61] lg:hidden flex flex-col pt-20 px-4"
+            role="dialog"
+            aria-label="Menu de navegação"
+          >
+            <nav className="flex flex-col gap-2 font-black uppercase tracking-widest text-secondary dark:text-accent">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="py-3 px-4 rounded-lg hover:bg-primary hover:text-white transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </>
+      )}
     </header>
   )
 }

@@ -13,13 +13,13 @@ interface Slide {
 const slides: Slide[] = [
   {
     title: 'O PODER NINJA CHEGOU AO KB!',
-    gif: '/images/tartarugas1.gif',
-    alt: 'King Jr Tartarugas Ninja - Donatello',
+    gif: '/images/rafael.gif',
+    alt: 'King Jr Tartarugas Ninja - Rafael',
   },
   {
     title: 'O PODER NINJA CHEGOU AO BK!',
     gif: '/images/media.gif',
-    alt: 'King Jr Tartarugas Ninja - Leonardo',
+    alt: 'King Jr Tartarugas Ninja',
     hasOrangeClass: true,
   },
 ]
